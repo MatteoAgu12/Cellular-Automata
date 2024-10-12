@@ -2,7 +2,7 @@
 
 **If you want to define new rules, create a new branch labelled with your Name and Surname!**
 
-This is a cellular automata for IPT problem: "traveling flames".
+This is a cellular automata in c++/SFML for IPT problem: "traveling flames".
 In this program you can implement your own rule based on the state of the cell, the number of active neighbors and it's also possible to insert time conditions,
 such as a maximum alive time or a minimum death time.
 To define a function you need to define a lambda function in file "main.cpp" using the logic:

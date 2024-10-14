@@ -5,21 +5,25 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 
-#include <chrono>
-
-enum cell_states{USELESS, DEAD, ALIVE};
+#include <array>
 
 class Cell {
 private:
-    short state;
+    bool useless;
     bool alive; 
-    unsigned int neighbors; 
+    unsigned int neighbors;
+    std::array<unsigned int, 2> index;
 
-    std::chrono::time_point<std::chrono::steady_clock> aliveSince;
-    std::chrono::time_point<std::chrono::steady_clock> deadSince;
+    sf::Clock alive_clock;
+    sf::Clock dead_clock;
 
 public:
     Cell();
+
+    void setIndex(unsigned i, unsigned j);
+
+    void setUseless(bool useless);
+    bool isUseless() const;
 
     bool isAlive() const;
     void setAlive(bool alive);
@@ -27,10 +31,15 @@ public:
     unsigned int getNeighbors() const;
     void setNeighbors(unsigned int count);
 
-    std::chrono::time_point<std::chrono::steady_clock> getAliveTime() const;
-    std::chrono::time_point<std::chrono::steady_clock> getDeadTime() const;
+    float getElpsedAliveTimeAsSeconds() const;
     void resetAliveTimer();
+    float getElpsedDeadTimeAsSeconds() const;
     void resetDeadTimer();
+
+    std::array<unsigned int, 2> operator() ()
+    {
+        return index;
+    }
 };
 
 #endif

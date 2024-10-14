@@ -1,7 +1,25 @@
 #include "Cell.hpp"
 
-Cell::Cell() : alive(false), neighbors(0) 
+Cell::Cell() : alive(false), neighbors(0), useless(true), index({0, 0})
 {
+    alive_clock.restart();
+    dead_clock.restart();
+}
+
+void Cell::setIndex(unsigned x, unsigned y)
+{
+    index[0] = x;
+    index[1] = y;
+}
+
+void Cell::setUseless(bool useless)
+{
+    this->useless = useless;
+}
+
+bool Cell::isUseless() const
+{
+    return useless;
 }
 
 bool Cell::isAlive() const 
@@ -12,11 +30,6 @@ bool Cell::isAlive() const
 void Cell::setAlive(bool alive) 
 {
     this->alive = alive;
-
-    if (alive)
-    {
-        aliveSince = std::chrono::steady_clock::now();
-    }
 }
 
 unsigned int Cell::getNeighbors() const 
@@ -29,22 +42,22 @@ void Cell::setNeighbors(unsigned int count)
     neighbors = count;
 }
 
-std::chrono::time_point<std::chrono::steady_clock> Cell::getAliveTime() const
+float Cell::getElpsedAliveTimeAsSeconds() const
 {
-    return aliveSince;
-}
-
-std::chrono::time_point<std::chrono::steady_clock> Cell::getDeadTime() const
-{
-    return deadSince;
+    return alive_clock.getElapsedTime().asSeconds();
 }
 
 void Cell::resetAliveTimer()
 {
-    aliveSince = std::chrono::steady_clock::now();
+    alive_clock.restart();
+}
+
+float Cell::getElpsedDeadTimeAsSeconds() const
+{
+    return dead_clock.getElapsedTime().asSeconds();
 }
 
 void Cell::resetDeadTimer()
 {
-    deadSince = std::chrono::steady_clock::now();
+    dead_clock.restart();
 }

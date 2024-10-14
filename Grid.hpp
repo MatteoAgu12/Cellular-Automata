@@ -13,10 +13,11 @@ public:
 
     Grid(unsigned int width, unsigned int height, float cellSize, RuleFunction rule, bool empty = false);
 
-    void toggleCell(unsigned int x, unsigned int y, bool alive);
+    void toggleCellLife(unsigned int x, unsigned int y, bool alive);
+    void toggleCellUtility(unsigned int x, unsigned int y, bool useless);
     void update();
     void reset(bool empty);
-    void draw(sf::RenderTarget* target) const;
+    void draw(sf::RenderTarget* target);
 
 private:
     unsigned int width, height;
@@ -24,6 +25,7 @@ private:
     std::vector<std::vector<Cell>> cells;
 
     RuleFunction rule;
+    sf::RectangleShape cellShape;
 
     void countNeighbors();
     void applyRules();

@@ -8,6 +8,9 @@ private:
     sf::RenderWindow* window;
     Grid grid;
 
+    sf::CircleShape modification_mode;
+    sf::CircleShape evolution_mode;
+    bool modify_utility;
     bool evolve;
 
     sf::Clock keyboard_clock;

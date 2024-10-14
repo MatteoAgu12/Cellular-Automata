@@ -10,6 +10,15 @@ Simulation::Simulation(unsigned int width, unsigned int height, float cellSize, 
     window->setPosition(sf::Vector2i(0, 0));
 
     evolve = false;
+    modify_utility = true;
+
+    modification_mode.setRadius(50.f);
+    modification_mode.setOrigin(50.f, 50.f);
+    modification_mode.setPosition(800.f, 300.f);
+
+    evolution_mode.setRadius(50.f);
+    evolution_mode.setOrigin(50.f, 50.f);
+    evolution_mode.setPosition(800.f, 450.f);
 }
 
 Simulation::~Simulation()
@@ -29,6 +38,23 @@ void Simulation::pollEvents()
         { 
             evolve = !evolve;
             keyboard_clock.restart();
+
+            if (!evolve)
+                evolution_mode.setFillColor(sf::Color::White);
+            else
+                evolution_mode.setFillColor(sf::Color::Green);
+        }
+
+        // Mouse icon part
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::M && keyboard_clock.getElapsedTime().asSeconds() >= 0.1f)
+        {
+            modify_utility = !modify_utility;
+            keyboard_clock.restart();
+
+            if (modify_utility)
+                modification_mode.setFillColor(sf::Color::White);
+            else
+                modification_mode.setFillColor(sf::Color::Red);
         }
     }
 }
@@ -38,14 +64,34 @@ void Simulation::updateMouseInputs()
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && mouse_clock.getElapsedTime().asSeconds() >= 0.1f)
     {
         sf::Vector2i mouse_pos = sf::Mouse::getPosition(*window);
-        grid.toggleCell(mouse_pos.x, mouse_pos.y, true);
-        mouse_clock.restart();
+
+        if (modify_utility)
+        {
+            grid.toggleCellUtility(mouse_pos.x, mouse_pos.y, false);
+            mouse_clock.restart();
+        }
+
+        else
+        {
+            grid.toggleCellLife(mouse_pos.x, mouse_pos.y, true);
+            mouse_clock.restart();
+        }
     }
     else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && mouse_clock.getElapsedTime().asSeconds() >= 0.1f)
     {
         sf::Vector2i mouse_pos = sf::Mouse::getPosition(*window);
-        grid.toggleCell(mouse_pos.x, mouse_pos.y, false);
-        mouse_clock.restart();
+
+        if (modify_utility)
+        {
+            grid.toggleCellUtility(mouse_pos.x, mouse_pos.y, true);
+            mouse_clock.restart();
+        }
+
+        else
+        {
+            grid.toggleCellLife(mouse_pos.x, mouse_pos.y, false);
+            mouse_clock.restart();
+        }
     }
 }
 
@@ -65,6 +111,8 @@ void Simulation::render()
     window->clear(sf::Color::Cyan);
 
     grid.draw(window);
+    window->draw(modification_mode);
+    window->draw(evolution_mode);
     
     window->display();
 }

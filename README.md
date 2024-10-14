@@ -1,4 +1,4 @@
-## Cellular-Automata
+# Cellular-Automata
 
 **If you want to define new rules, create a new branch labelled with your Name and Surname!**
 
@@ -21,7 +21,7 @@ The parameters of the simulation constructor are:
     * if the simulation starts empty or not (bool)
 
 
-# Commands:
+## Commands:
 
 To start/stop the simulation push Space: by looking at the bottom circle you can understand if the simulation is running (green circle) or not (white circle). 
 To modify the state of a cell use the left mouse button (modify) and the right mouse button (undo) on it.

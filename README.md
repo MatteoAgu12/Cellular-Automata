@@ -26,9 +26,9 @@ To start/stop the simulation push Space: by looking at the bottom circle you can
     * To modify the state of a cell use the left mouse button (modify) and the right mouse button (undo) on it.
 
 The cells can have three different states, corrisponding to three different colors:
-    * **Black** --> the cell is *USELESS*, so it won't evolve during the simulation
-    * **Blue** --> the cell is *DEAD* and will be modified during the simulation
-    * **White** --> the cell is *ALIVE* and will be modified during the simulation
+    * Black --> the cell is USELESS, so it won't evolve during the simulation
+    * Blue --> the cell is DEAD and will be modified during the simulation
+    * White --> the cell is ALIVE and will be modified during the simulation
 
 You can modify either the utility and the state (alive or not) of a cell. By pushing 'M' you can switch between the two modes. You'll understand what you can currently modify by looking at the top circle:
     * if it's white, you can modify the utility of a cell

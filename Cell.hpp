@@ -6,6 +6,8 @@
 #include <SFML/System.hpp>
 
 #include <array>
+#include <map>
+#include <string>
 
 class Cell {
 private:
@@ -14,6 +16,8 @@ private:
     unsigned int neighbors;
     std::array<unsigned int, 2> index;
 
+    std::map<std::string, float> attributes;
+
     sf::Clock alive_clock;
     sf::Clock dead_clock;
 
@@ -21,6 +25,8 @@ public:
     Cell();
 
     void setIndex(unsigned i, unsigned j);
+
+    void addAttribute(std::string title, float initial_value = 0.f);
 
     void setUseless(bool useless);
     bool isUseless() const;

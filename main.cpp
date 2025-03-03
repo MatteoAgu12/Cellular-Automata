@@ -2,7 +2,7 @@
 #include <iostream>
 
 /*
-    This is a cellular automata for IPT problem: "traveling flames".
+    This is a cellular automata for IPT problem: "TRAVELLING FLAMES".
     In this program you can implement your own rule based on the state of the cell, the number of active neighbors and it's also possible to insert time conditions,
     such as a maximum alive time or a minimum death time.
     To define a function you need to define a lambda function in file "main.cpp" using the logic:
@@ -20,7 +20,7 @@
         * rule to follow (Grid::RuleFunction)
         * if the simulation starts empty or not (bool)
     
-    VERY IMPORTANT: READ THE COMMANDS IN THE TERMINAL AFTER YOU EXCACUTE THE CODE!!
+    VERY IMPORTANT: READ THE COMMANDS IN THE TERMINAL AFTER YOU EXCECUTE THE CODE!!
 */
 
 int main()

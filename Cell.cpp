@@ -4,12 +4,18 @@ Cell::Cell() : alive(false), neighbors(0), useless(true), index({0, 0})
 {
     alive_clock.restart();
     dead_clock.restart();
+    attributes = {};
 }
 
 void Cell::setIndex(unsigned x, unsigned y)
 {
     index[0] = x;
     index[1] = y;
+}
+
+void Cell::addAttribute(std::string title, float initial_value)
+{
+    attributes[title] = initial_value
 }
 
 void Cell::setUseless(bool useless)

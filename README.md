@@ -10,6 +10,11 @@ To define a function you need to define a lambda function in file "main.cpp" usi
     Grid::RuleFunction rule_name = [variables](bool isAlive, int neighbors, Cell& cell) -> bool
 
 You can pass the lambda function in the Simulation constructor to make it work.
+Each cell in this simulation is an independent object, and new attributes can be added to each cell using the function
+    
+    Cell::addAttributes(std::string title, float initial_value = 0.f)
+
+You can work with any attribute and invent crazy rules that rely on their values, only after defining them.
 
 If you want the cell to be empty at the beginning of the simulation, set the "empty" parameter of the constructor to true.
 If empty = false, the grid will be randomly filled.

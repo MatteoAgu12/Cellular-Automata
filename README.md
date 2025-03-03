@@ -20,10 +20,10 @@ If you want the cell to be empty at the beginning of the simulation, set the "em
 If empty = false, the grid will be randomly filled.
 
 The parameters of the simulation constructor are:
-    * number of rows (unsigned int)
-    * number of columns (unsigned int)
-    * rule to follow (Grid::RuleFunction)
-    * if the simulation starts empty or not (bool)
+* number of rows (unsigned int)
+* number of columns (unsigned int)
+* rule to follow (Grid::RuleFunction)
+* if the simulation starts empty or not (bool)
 
 
 ## Commands:
